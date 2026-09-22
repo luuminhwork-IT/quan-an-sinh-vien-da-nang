@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Danang Student Eats</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#fff; --text:#17202a; --muted:#6b7280;
+    --line:#e5e7eb; --accent:#ff6b35; --accent2:#fff1eb; --green:#16a34a;
+    --shadow:0 10px 30px rgba(15,23,42,.07);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+  button,select{font:inherit}
+  .app{max-width:720px;margin:auto;min-height:100vh}
+  header{padding:24px 20px 18px;background:linear-gradient(135deg,#ff6b35,#ff8b5f);color:#fff;border-radius:0 0 28px 28px}
+  .eyebrow{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+  h1{font-size:29px;line-height:1.08;margin:8px 0 10px}
+  header p{margin:0;opacity:.92;line-height:1.5}
+  main{padding:18px 16px 36px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px}
+  .step{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+  .step strong{font-size:17px}.step span{font-size:12px;color:var(--muted)}
+  label{display:block;font-size:12px;font-weight:750;color:#374151;margin:14px 0 7px}
+  select{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:13px;background:#fff;color:var(--text);outline:none}
+  select:focus{border-color:var(--accent)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pill{position:relative}
+  .pill input{position:absolute;opacity:0;pointer-events:none}
+  .pill span{display:block;padding:12px 10px;border:1px solid var(--line);border-radius:13px;text-align:center;font-size:13px;cursor:pointer;background:#fff}
+  .pill input:checked+span{border-color:var(--accent);background:var(--accent2);color:#d94e1d;font-weight:800}
+  .btn{width:100%;border:0;border-radius:14px;padding:14px 16px;background:var(--accent);color:#fff;font-weight:800;cursor:pointer;margin-top:16px}
+  .btn:active{transform:translateY(1px)}
+  .results-head{display:flex;align-items:end;justify-content:space-between;margin:24px 2px 12px}
+  .results-head h2{font-size:20px;margin:0}.results-head p{font-size:12px;color:var(--muted);margin:4px 0 0}
+  .restaurant{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:12px;display:grid;grid-template-columns:58px 1fr;gap:12px}
+  .thumb{height:58px;border-radius:15px;display:grid;place-items:center;background:#fff1eb;font-size:28px}
+  .restaurant h3{font-size:16px;margin:0 0 5px}
+  .meta{font-size:12px;color:var(--muted);line-height:1.45}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .tag{font-size:10px;padding:5px 7px;border-radius:999px;background:#f3f4f6;color:#4b5563}
+  .match{margin-left:auto;color:var(--green);font-weight:850;font-size:12px}
+  .why{margin-top:8px;padding:9px 10px;background:#f8fafc;border-radius:10px;font-size:11px;color:#475569}
+  .empty{display:none;text-align:center;color:var(--muted);padding:24px}
+  footer{text-align:center;color:#9ca3af;font-size:11px;padding:6px 20px 30px}
+  @media(min-width:680px){header{margin-top:18px;border-radius:28px}main{padding:22px 0 40px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="eyebrow">Danang Student Eats</div>
+    <h1>New to Da Nang?<br>Let us find your food.</h1>
+    <p>Tell us where you study, where you live, your budget and what you like to eat.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="step"><strong>Your preferences</strong><span>1 minute</span></div>
+
+      <label for="university">University</label>
+      <select id="university">
+        <option value="all">Choose your university</option>
+        <option value="DUE">University of Economics (DUE)</option>
+        <option value="DUT">University of Science and Technology (DUT)</option>
+        <option value="UD">University of Danang (UD)</option>
+        <option value="DTU">Duy Tan University (DTU)</option>
+        <option value="FPT">FPT University Da Nang</option>
+      </select>
+
+      <label for="area">Accommodation area</label>
+      <select id="area">
+        <option value="all">Choose your area</option>
+        <option value="Hai Chau">Hai Chau</option>
+        <option value="Thanh Khe">Thanh Khe</option>
+        <option value="Lien Chieu">Lien Chieu</option>
+        <option value="Ngu Hanh Son">Ngu Hanh Son</option>
+        <option value="Son Tra">Son Tra</option>
+        <option value="Cam Le">Cam Le</option>
+      </select>
+
+      <label>Budget per person</label>
+      <div class="grid">
+        <label class="pill"><input type="radio" name="budget" value="under30"><span>Under 30k</span></label>
+        <label class="pill"><input type="radio" name="budget" value="30to50" checked><span>30–50k</span></label>
+        <label class="pill"><input type="radio" name="budget" value="50to80"><span>50–80k</span></label>
+        <label class="pill"><input type="radio" name="budget" value="80plus"><span>80k+</span></label>
+      </div>
+
+      <label for="food">Preferred food</label>
+      <select id="food">
+        <option value="all">Anything</option>
+        <option value="mi-quang">Mì Quảng</option>
+        <option value="com">Rice / Cơm</option>
+        <option value="bun">Noodles / Bún</option>
+        <option value="banh-xeo">Bánh xèo & Nem lụi</option>
+        <option value="snack">Snacks</option>
+        <option value="coffee">Coffee & Drinks</option>
+      </select>
+
+      <button class="btn" onclick="recommend()">Find my food spots →</button>
+    </section>
+
+    <div class="results-head">
+      <div><h2>Recommended for you</h2><p id="summary">Choose your preferences to personalize the list.</p></div>
+    </div>
+
+    <section id="results"></section>
+    <div id="empty" class="card empty">No exact matches yet. Try a wider budget or choose “Anything”.</div>
+  </main>
+
+  <footer>Student-focused prototype • Restaurant data shown here is demo data.</footer>
+</div>
+
+<script>
+const restaurants = [
+  {name:"Mì Quảng Sinh Đôi", emoji:"🍜", areas:["Hai Chau","Thanh Khe"], uni:["DUE","UD","DTU"], budget:"30to50", food:"mi-quang", price:"35–45k", dist:"0.8–1.6 km", tags:["Local food","Student-friendly"]},
+  {name:"Cơm Gà Đà Nẵng", emoji:"🍗", areas:["Hai Chau","Thanh Khe"], uni:["DUE","UD","DTU"], budget:"under30", food:"com", price:"25–35k", dist:"0.7–1.8 km", tags:["Quick meal","Budget"]},
+  {name:"Bún Chả Cá Student", emoji:"🍲", areas:["Hai Chau","Son Tra"], uni:["DUE","UD","DTU"], budget:"under30", food:"bun", price:"25–40k", dist:"0.9–2.2 km", tags:["Local favorite","Fast"]},
+  {name:"Bánh Xèo Bà Dưỡng", emoji:"🥞", areas:["Hai Chau"], uni:["DUE","UD","DTU"], budget:"30to50", food:"banh-xeo", price:"35–50k", dist:"1.2 km", tags:["Da Nang classic","Group-friendly"]},
+  {name:"Student Corner Coffee", emoji:"☕", areas:["Ngu Hanh Son","Son Tra"], uni:["FPT","DUE","DTU"], budget:"30to50", food:"coffee", price:"30–50k", dist:"0.5–1.5 km", tags:["Study spot","Wi-Fi"]},
+  {name:"Lien Chieu Snack Street", emoji:"🍢", areas:["Lien Chieu"], uni:["DUT","UD"], budget:"under30", food:"snack", price:"15–30k", dist:"0.4–1.0 km", tags:["Cheap","After class"]},
+  {name:"Beachside Rice Bowl", emoji:"🍚", areas:["Ngu Hanh Son","Son Tra"], uni:["FPT","DUE","DTU"], budget:"50to80", food:"com", price:"55–75k", dist:"1.0–2.5 km", tags:["Comfort food","Nice view"]},
+  {name:"Da Nang Family Kitchen", emoji:"🍜", areas:["Hai Chau","Cam Le"], uni:["UD","DUE","DTU"], budget:"80plus", food:"all", price:"80–120k", dist:"1.4–3.0 km", tags:["Group meal","Local"]},
+];
+
+function getBudgetScore(item,budget){
+  if(item.budget===budget) return 42;
+  if((budget==="30to50" && item.budget==="under30") || (budget==="50to80" && ["30to50","under30"].includes(item.budget)) || (budget==="80plus")) return 24;
+  return 5;
+}
+function recommend(){
+  const uni=document.getElementById("university").value;
+  const area=document.getElementById("area").value;
+  const budget=document.querySelector('input[name="budget"]:checked').value;
+  const food=document.getElementById("food").value;
+
+  let scored=restaurants.map(r=>{
+    let score=16;
+    if(uni!=="all") score += r.uni.includes(uni)?25:0;
+    if(area!=="all") score += r.areas.includes(area)?25:0;
+    score += getBudgetScore(r,budget);
+    if(food!=="all") score += (r.food===food || r.food==="all")?18:0;
+    return {...r,score:Math.min(99,score)};
+  }).sort((a,b)=>b.score-a.score);
+
+  const matches=scored.filter(r=>r.score>=45).slice(0,6);
+  const list=matches.length?matches:scored.slice(0,4);
+  document.getElementById("empty").style.display=matches.length?"none":"block";
+  document.getElementById("summary").textContent=`${list.length} spots matched your preferences`;
+  document.getElementById("results").innerHTML=list.map(r=>{
+    const reasons=[];
+    if(area!=="all" && r.areas.includes(area)) reasons.push("near your area");
+    if(uni!=="all" && r.uni.includes(uni)) reasons.push("near your university");
+    if(food!=="all" && (r.food===food || r.food==="all")) reasons.push("matches your food");
+    reasons.push("fits student budget");
+    return `<article class="restaurant">
+      <div class="thumb">${r.emoji}</div>
+      <div>
+        <div style="display:flex;gap:8px;align-items:center"><h3>${r.name}</h3><span class="match">${r.score}% match</span></div>
+        <div class="meta">${r.price} · ${r.dist}</div>
+        <div class="tags">${r.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+        <div class="why">Why recommended: ${reasons.slice(0,3).join(" · ")}.</div>
+      </div>
+    </article>`;
+  }).join("");
+}
+recommend();
+</script>
+</body>
+</html>
